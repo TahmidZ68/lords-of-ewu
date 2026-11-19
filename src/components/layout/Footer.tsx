@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Mail, MapPin, Phone, ExternalLink } from 'lucide-react';
 import { ClubCrest } from '@/components/common/ClubCrest';
 import { useOrganization } from '@/hooks/useOrganization';
+import { SEASON_8_REGISTRATION_URL } from '@/data/documentedSeasons';
 
 export function Footer() {
   const { data: org } = useOrganization();
@@ -61,7 +62,16 @@ export function Footer() {
               <li><Link to="/players" className="hover:text-gold">Public Player Profiles</Link></li>
               <li><Link to="/hall-of-fame" className="hover:text-gold">Hall of Fame</Link></li>
               <li><Link to="/gallery" className="hover:text-gold">Photo & Video Gallery</Link></li>
-              <li><Link to="/register" className="hover:text-gold">Player Registration</Link></li>
+              <li>
+                <a
+                  href={SEASON_8_REGISTRATION_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-gold"
+                >
+                  Player Registration
+                </a>
+              </li>
               <li><Link to="/registration-status" className="hover:text-gold">Check Registration Status</Link></li>
             </ul>
           </div>

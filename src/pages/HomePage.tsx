@@ -711,10 +711,7 @@ export function HomePage() {
           </div>
           <div className="flex flex-wrap gap-3">
             <Button variant="gold" size="lg" asChild>
-              <Link to="/join-us">Apply for Community Membership</Link>
-            </Button>
-            <Button variant="outlineLight" size="lg" asChild>
-              <Link to="/register">Tournament Registration</Link>
+              <Link to="/join-us">Join Us</Link>
             </Button>
           </div>
         </div>

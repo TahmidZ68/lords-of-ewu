@@ -17,7 +17,6 @@ const NAV_ITEMS = [
   { to: '/players', label: 'Players' },
   { to: '/gallery', label: 'Gallery' },
   { to: '/community', label: 'Community' },
-  { to: '/join-us', label: 'Join Us' },
 ];
 
 export function Navbar() {
@@ -80,7 +79,7 @@ export function Navbar() {
             <Link to="/registration-status">Check Status</Link>
           </Button>
           <Button variant="gold" size="sm" asChild>
-            <Link to="/register">Register</Link>
+            <Link to="/join-us">Join Us</Link>
           </Button>
           {isAdmin && (
             <Button variant="ghost" size="icon" className="text-gold hover:bg-forest-700" asChild>
@@ -128,7 +127,7 @@ export function Navbar() {
                 <Link to="/registration-status">Check Status</Link>
               </Button>
               <Button variant="gold" size="sm" asChild onClick={() => setOpen(false)}>
-                <Link to="/register">Register Now</Link>
+                <Link to="/join-us">Join Us</Link>
               </Button>
             </div>
             <Link

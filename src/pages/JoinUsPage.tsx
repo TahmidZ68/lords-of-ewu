@@ -13,6 +13,7 @@ import { PageBanner } from '@/components/common/PageBanner';
 import { SeoHead } from '@/components/common/SeoHead';
 import { isSupabaseConfigured, supabase } from '@/lib/supabase';
 import { useToast } from '@/contexts/ToastContext';
+import { SEASON_8_REGISTRATION_URL } from '@/data/documentedSeasons';
 
 const joinSchema = z.object({
   full_name: z.string().min(2, 'Full name is required'),
@@ -110,9 +111,14 @@ export function JoinUsPage() {
               <p className="mt-1 text-charcoal-500">
                 General community membership is separate from tournament player registration. To
                 enter an open Lords Cup season, use the{' '}
-                <Link to="/register" className="font-semibold text-forest underline">
+                <a
+                  href={SEASON_8_REGISTRATION_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-semibold text-forest underline"
+                >
                   Player Tournament Registration
-                </Link>{' '}
+                </a>{' '}
                 form.
               </p>
             </div>
