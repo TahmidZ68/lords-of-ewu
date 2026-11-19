@@ -71,7 +71,7 @@ export function App() {
                 <Route path="/gallery" element={<GalleryPage />} />
                 <Route path="/community" element={<CommunityPage />} />
                 <Route path="/join-us" element={<JoinUsPage />} />
-                <Route path="/register" element={<RegisterPage />} />
+                <Route path="/register" element={<Navigate to="/join-us" replace />} />
                 <Route path="/registration-status" element={<RegistrationStatusPage />} />
               </Route>
 
