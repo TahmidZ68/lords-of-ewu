@@ -54,7 +54,7 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Links */}
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
+        <nav className="hidden items-center gap-0.5 xl:flex" aria-label="Primary navigation">
           {NAV_ITEMS.map((item) => (
             <NavLink
               key={item.to}
@@ -62,7 +62,7 @@ export function Navbar() {
               end={item.to === '/'}
               className={({ isActive }) =>
                 cn(
-                  'px-3 py-2 text-xs font-semibold uppercase tracking-wider transition-colors',
+                  'whitespace-nowrap px-2.5 py-2 text-xs font-semibold uppercase tracking-wider transition-colors',
                   isActive
                     ? 'text-gold underline decoration-gold underline-offset-8'
                     : 'text-cream/85 hover:text-gold'
@@ -75,7 +75,7 @@ export function Navbar() {
         </nav>
 
         {/* Desktop CTAs */}
-        <div className="hidden items-center gap-2 lg:flex">
+        <div className="hidden items-center gap-2 xl:flex">
           <Button variant="outlineLight" size="sm" asChild>
             <Link to="/registration-status">Check Status</Link>
           </Button>
@@ -94,7 +94,7 @@ export function Navbar() {
         {/* Mobile Menu Button */}
         <button
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-sm border border-gold/30 text-cream lg:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-sm border border-gold/30 text-cream xl:hidden"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-label="Toggle navigation menu"
@@ -105,7 +105,7 @@ export function Navbar() {
 
       {/* Mobile Drawer */}
       {open && (
-        <div className="border-t border-gold/25 bg-forest-800 lg:hidden">
+        <div className="max-h-[calc(100vh-5.5rem)] overflow-y-auto border-t border-gold/25 bg-forest-800 xl:hidden">
           <nav className="container flex flex-col gap-1 py-4" aria-label="Mobile navigation">
             {NAV_ITEMS.map((item) => (
               <NavLink

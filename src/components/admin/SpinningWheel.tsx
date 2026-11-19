@@ -71,7 +71,7 @@ export function SpinningWheel({ items, disabled, onResult }: SpinningWheelProps)
 
         {/* Wheel SVG */}
         <div
-          className="h-72 w-72 sm:h-80 sm:w-80 rounded-full border-4 border-gold shadow-2xl overflow-hidden"
+          className="aspect-square w-64 sm:w-80 max-w-full rounded-full border-4 border-gold shadow-2xl overflow-hidden"
           style={{
             transform: `rotate(${rotation}deg)`,
             transition: spinning ? 'transform 3.5s cubic-bezier(0.12, 0.8, 0.18, 1)' : 'none',

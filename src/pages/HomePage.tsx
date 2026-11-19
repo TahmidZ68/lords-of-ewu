@@ -26,7 +26,10 @@ import {
   usePublishedMatches,
   usePublishedSeasons,
 } from '@/hooks/usePublicData';
-import { mergeWithDocumentedSeasons } from '@/data/documentedSeasons';
+import {
+  mergeWithDocumentedSeasons,
+  SEASON_8_REGISTRATION_URL,
+} from '@/data/documentedSeasons';
 import { FORMAT_LABELS, formatCurrency, formatDate } from '@/lib/utils';
 
 const CORE_VALUES = [
@@ -75,6 +78,36 @@ export function HomePage() {
         title="Home"
         description="Lords of EWU — Creating Space for Everyone to Play. Student-led football community originating at East West University, Dhaka, Bangladesh."
       />
+
+      {/* FLOATING ANIMATED NEWS TICKER BAR */}
+      <div className="relative overflow-hidden border-b border-gold/40 bg-charcoal py-2.5 text-cream">
+        <div className="flex items-center">
+          <div className="z-10 flex shrink-0 items-center gap-2 bg-charcoal pl-4 pr-3">
+            <span className="h-2 w-2 animate-pulse rounded-full bg-gold" />
+            <span className="font-display text-xs font-bold uppercase tracking-[0.22em] text-gold">
+              News
+            </span>
+          </div>
+          <div className="relative flex-1 overflow-hidden">
+            <motion.div
+              className="flex w-max items-center gap-10 whitespace-nowrap text-xs font-semibold uppercase tracking-wider text-cream/90"
+              animate={{ x: ['0%', '-50%'] }}
+              transition={{ repeat: Infinity, ease: 'linear', duration: 26 }}
+            >
+              {[0, 1].map((dup) => (
+                <Link
+                  key={dup}
+                  to="/lords-cup/season-8"
+                  className="inline-flex items-center gap-6 hover:text-gold"
+                >
+                  <span>Lords Cup Season 8 is Live now →</span>
+                  <span className="text-gold">★</span>
+                </Link>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </div>
 
       {/* 1. STRONG LORDS OF EWU HERO SECTION */}
       <section className="relative overflow-hidden border-b-2 border-gold/60 bg-forest text-cream pitch-lines">
@@ -150,6 +183,61 @@ export function HomePage() {
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* SEASON 8 SPOTLIGHT BANNER */}
+      <section className="border-b-2 border-gold/60 bg-charcoal py-10 text-cream">
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0.95, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.45 }}
+            className="overflow-hidden rounded-sm border border-gold/40 bg-forest-900/90 shadow-xl"
+          >
+            <div className="grid items-center lg:grid-cols-12">
+              <div className="lg:col-span-7">
+                <img
+                  src="/assets/lords-cup-s8-banner.jpg"
+                  alt="Lords Cup Season 8 — French Ligue 1 Official Banner"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <div className="space-y-4 p-6 sm:p-8 lg:col-span-5">
+                <div className="flex flex-wrap items-center gap-2">
+                  <Badge variant="gold">Season 8 Is Here</Badge>
+                  <Badge variant="outline" className="border-gold/50 text-gold">
+                    French Ligue 1 Edition
+                  </Badge>
+                </div>
+                <h2 className="font-serif text-2xl font-bold text-cream sm:text-3xl">
+                  Lords Cup Season 8 — Reserve Your Seat
+                </h2>
+                <div className="space-y-1.5 text-sm text-cream/85">
+                  <p className="flex items-center gap-2">
+                    <Calendar className="h-4 w-4 text-gold" />
+                    10th November · 11:30 PM – Whole Night
+                  </p>
+                  <p className="flex items-center gap-2">
+                    <MapPin className="h-4 w-4 text-gold" />
+                    East Court Arena · 6 Players / Team
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-3 pt-2">
+                  <Button variant="gold" size="lg" asChild>
+                    <a href={SEASON_8_REGISTRATION_URL} target="_blank" rel="noreferrer">
+                      Reserve Your Seat &amp; Pay
+                      <ExternalLink className="h-4 w-4" />
+                    </a>
+                  </Button>
+                  <Button variant="outlineLight" size="lg" asChild>
+                    <Link to="/lords-cup/season-8">Season 8 Details</Link>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 

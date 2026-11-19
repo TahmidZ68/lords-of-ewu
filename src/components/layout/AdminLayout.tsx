@@ -84,7 +84,7 @@ export function AdminLayout() {
   });
 
   return (
-    <div className="flex min-h-screen bg-cream text-charcoal">
+    <div className="flex min-h-screen overflow-x-hidden bg-cream text-charcoal">
       {/* Sidebar */}
       <aside
         className={cn(

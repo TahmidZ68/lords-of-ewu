@@ -7,7 +7,10 @@ import { PageBanner } from '@/components/common/PageBanner';
 import { SeoHead } from '@/components/common/SeoHead';
 import { WhyLordsCupDifferent } from '@/components/common/WhyLordsCupDifferent';
 import { usePublishedSeasons } from '@/hooks/usePublicData';
-import { mergeWithDocumentedSeasons } from '@/data/documentedSeasons';
+import {
+  HISTORICAL_SEASON_EXTRAS,
+  mergeWithDocumentedSeasons,
+} from '@/data/documentedSeasons';
 import { formatDate } from '@/lib/utils';
 
 const VERIFICATION_LABEL: Record<string, { text: string; variant: 'default' | 'gold' | 'muted' }> = {
@@ -117,19 +120,33 @@ export function LordsCupHistoryPage() {
                           {season.tournament_start_date && (
                             <span className="inline-flex items-center gap-1.5">
                               <Calendar className="h-3.5 w-3.5 text-forest" />
-                              {formatDate(season.tournament_start_date)}
-                              {season.verification_status === 'awaiting_verification'
-                                ? ' (Discussed / Unconfirmed)'
-                                : ''}
+                              {HISTORICAL_SEASON_EXTRAS[season.season_number]?.displayDate ||
+                                formatDate(season.tournament_start_date)}
                             </span>
                           )}
                           {season.champion_team && (
                             <span className="inline-flex items-center gap-1.5 font-semibold text-gold-600">
                               <Trophy className="h-3.5 w-3.5" />
-                              Champion: {season.champion_team}
+                              Winner: {season.champion_team}
+                            </span>
+                          )}
+                          {season.runner_up_team && (
+                            <span className="inline-flex items-center gap-1.5 font-medium text-charcoal-500">
+                              Runner-up: {season.runner_up_team}
                             </span>
                           )}
                         </div>
+
+                        {HISTORICAL_SEASON_EXTRAS[season.season_number]?.participatingTeams?.length > 0 && (
+                          <div className="pt-2">
+                            <p className="text-[11px] font-bold uppercase tracking-wider text-charcoal-400">
+                              Participating Teams ({HISTORICAL_SEASON_EXTRAS[season.season_number].participatingTeams.length})
+                            </p>
+                            <p className="mt-0.5 text-xs text-charcoal-500">
+                              {HISTORICAL_SEASON_EXTRAS[season.season_number].participatingTeams.join(' · ')}
+                            </p>
+                          </div>
+                        )}
 
                         {!season.champion_team && !season.runner_up_team && (
                           <p className="pt-1 text-xs italic text-charcoal-400">

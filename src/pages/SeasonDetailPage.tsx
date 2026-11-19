@@ -31,7 +31,11 @@ import {
   useSeasonStandings,
   useSeasonTeams,
 } from '@/hooks/usePublicData';
-import { mergeWithDocumentedSeasons } from '@/data/documentedSeasons';
+import {
+  HISTORICAL_SEASON_EXTRAS,
+  mergeWithDocumentedSeasons,
+  SEASON_8_REGISTRATION_URL,
+} from '@/data/documentedSeasons';
 import { formatCurrency, formatDate } from '@/lib/utils';
 
 export function SeasonDetailPage({ seasonNumberProp }: { seasonNumberProp?: number }) {
@@ -85,16 +89,29 @@ export function SeasonDetailPage({ seasonNumberProp }: { seasonNumberProp?: numb
       />
 
       <PageBanner
-        eyebrow={`Lords Cup Historical Archive · Season ${season.season_number}`}
+        eyebrow={
+          season.season_number === 8
+            ? 'Lords Cup Upcoming Edition · Season 8'
+            : `Lords Cup Historical Archive · Season ${season.season_number}`
+        }
         title={season.name}
         subtitle={season.description || 'Historical records being updated.'}
         rightSlot={
-          <Button variant="outlineLight" asChild>
-            <Link to="/lords-cup/history">
-              <ArrowLeft className="h-4 w-4" />
-              All Seasons (1–8)
-            </Link>
-          </Button>
+          <div className="flex flex-wrap gap-2">
+            {season.season_number === 8 && (
+              <Button variant="gold" asChild>
+                <a href={SEASON_8_REGISTRATION_URL} target="_blank" rel="noreferrer">
+                  Reserve Your Seat &amp; Pay →
+                </a>
+              </Button>
+            )}
+            <Button variant="outlineLight" asChild>
+              <Link to="/lords-cup/history">
+                <ArrowLeft className="h-4 w-4" />
+                All Seasons (1–8)
+              </Link>
+            </Button>
+          </div>
         }
       />
 
@@ -115,8 +132,18 @@ export function SeasonDetailPage({ seasonNumberProp }: { seasonNumberProp?: numb
         )}
 
         {/* Poster + Core Metadata */}
+        {season.season_number === 8 && (
+          <div className="overflow-hidden rounded-sm border-2 border-gold/60 shadow-lg">
+            <img
+              src="/assets/lords-cup-s8-banner.jpg"
+              alt="Lords Cup Season 8 — French Ligue 1 Official Banner"
+              className="w-full max-h-[420px] object-cover"
+            />
+          </div>
+        )}
+
         <div className="grid gap-8 lg:grid-cols-12">
-          {season.poster_url && (
+          {season.poster_url && season.season_number !== 8 && (
             <div className="lg:col-span-4">
               <img
                 src={season.poster_url}
@@ -126,7 +153,7 @@ export function SeasonDetailPage({ seasonNumberProp }: { seasonNumberProp?: numb
             </div>
           )}
 
-          <div className={season.poster_url ? 'lg:col-span-8 space-y-6' : 'lg:col-span-12 space-y-6'}>
+          <div className={season.poster_url && season.season_number !== 8 ? 'lg:col-span-8 space-y-6' : 'lg:col-span-12 space-y-6'}>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               <Card>
                 <CardContent className="p-4">
@@ -169,20 +196,37 @@ export function SeasonDetailPage({ seasonNumberProp }: { seasonNumberProp?: numb
               <Card>
                 <CardContent className="p-4">
                   <p className="text-[11px] font-bold uppercase tracking-wider text-charcoal-400">
-                    Verification Status
+                    Date &amp; Venue
                   </p>
-                  <div className="mt-1.5">
-                    <Badge
-                      variant={
-                        season.verification_status === 'awaiting_verification' ? 'gold' : 'default'
-                      }
-                    >
-                      {season.verification_status.replace('_', ' ')}
-                    </Badge>
-                  </div>
+                  <p className="mt-1 text-sm font-semibold">
+                    {HISTORICAL_SEASON_EXTRAS[season.season_number]?.displayDate ||
+                      formatDate(season.tournament_start_date)}
+                  </p>
+                  <p className="mt-0.5 text-xs text-charcoal-400">
+                    {season.venue || 'East Court Arena'}
+                  </p>
                 </CardContent>
               </Card>
             </div>
+
+            {HISTORICAL_SEASON_EXTRAS[season.season_number]?.participatingTeams?.length > 0 && (
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Users className="h-5 w-5 text-forest" />
+                    Participating Teams (
+                    {HISTORICAL_SEASON_EXTRAS[season.season_number].participatingTeams.length})
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="flex flex-wrap gap-2">
+                  {HISTORICAL_SEASON_EXTRAS[season.season_number].participatingTeams.map((teamName) => (
+                    <Badge key={teamName} variant="muted" className="px-3 py-1 text-xs">
+                      {teamName}
+                    </Badge>
+                  ))}
+                </CardContent>
+              </Card>
+            )}
 
             {/* Highlights & Scope */}
             <Card>
@@ -210,17 +254,17 @@ export function SeasonDetailPage({ seasonNumberProp }: { seasonNumberProp?: numb
               </CardContent>
             </Card>
 
-            {/* Season 8 Previously Discussed Historical Registration Info (Non-active!) */}
+            {/* Season 8 Upcoming Registration Info */}
             {season.season_number === 8 && (
-              <Card className="border-forest/30 bg-cream-100">
+              <Card className="border-gold bg-cream-100">
                 <CardHeader>
-                  <CardTitle>Previously Discussed Registration Concept (Historical)</CardTitle>
+                  <CardTitle>Season 8 Registration &amp; Event Details</CardTitle>
                 </CardHeader>
                 <CardContent className="grid gap-4 text-sm sm:grid-cols-2 lg:grid-cols-3">
                   <div>
                     <p className="text-xs font-bold uppercase text-charcoal-400">Registration Type</p>
                     <p className="font-semibold">
-                      {season.registration_type || 'Individual Registration'}
+                      {season.registration_type || 'Individual Registration + Live Draw'}
                     </p>
                   </div>
                   <div>
@@ -238,21 +282,19 @@ export function SeasonDetailPage({ seasonNumberProp }: { seasonNumberProp?: numb
                     <p className="font-semibold">Live Player Draw</p>
                   </div>
                   <div>
-                    <p className="text-xs font-bold uppercase text-charcoal-400">Venue Discussed</p>
+                    <p className="text-xs font-bold uppercase text-charcoal-400">Venue</p>
                     <p className="flex items-center gap-1 font-semibold">
                       <MapPin className="h-3.5 w-3.5 text-forest" />
-                      {season.venue || 'East Court Arena, Aftabnagar'}
+                      {season.venue || 'East Court Arena'}
                     </p>
                   </div>
                   <div>
                     <p className="text-xs font-bold uppercase text-charcoal-400">
-                      Date Discussed (Unconfirmed)
+                      Event Date &amp; Time
                     </p>
                     <p className="flex items-center gap-1 font-semibold">
                       <Calendar className="h-3.5 w-3.5 text-forest" />
-                      {season.tournament_start_date
-                        ? formatDate(season.tournament_start_date)
-                        : 'Awaiting verification'}
+                      10th November · 11:30 PM – Whole Night
                     </p>
                   </div>
                   {season.prizes_summary && (
@@ -261,11 +303,15 @@ export function SeasonDetailPage({ seasonNumberProp }: { seasonNumberProp?: numb
                       <p className="font-semibold">{season.prizes_summary}</p>
                     </div>
                   )}
-                  <div className="sm:col-span-2 lg:col-span-3 text-xs text-charcoal-500">
-                    Original registration intake concept: Full name, Email, Phone number, Facebook
-                    profile ID/URL, individual payment, and manual payment verification. Shown for
-                    historical record only; registration is currently{' '}
-                    <strong className="uppercase">{season.registration_status}</strong>.
+                  <div className="sm:col-span-2 lg:col-span-3 flex flex-wrap items-center justify-between gap-3 border-t border-forest/10 pt-3">
+                    <p className="text-xs text-charcoal-500">
+                      Reserve your seat and submit payment via the official Season 8 portal.
+                    </p>
+                    <Button variant="gold" size="sm" asChild>
+                      <a href={SEASON_8_REGISTRATION_URL} target="_blank" rel="noreferrer">
+                        Reserve Your Seat &amp; Pay →
+                      </a>
+                    </Button>
                   </div>
                 </CardContent>
               </Card>

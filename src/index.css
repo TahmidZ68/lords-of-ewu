@@ -40,6 +40,7 @@
     font-family: 'DM Sans', system-ui, sans-serif;
     background-color: #F0E6CE;
     color: #171717;
+    overflow-x: hidden;
   }
 }
 
