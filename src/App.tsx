@@ -29,6 +29,7 @@ import { AdminPaymentsPage } from '@/pages/admin/AdminPaymentsPage';
 import { AdminMembersPage } from '@/pages/admin/AdminMembersPage';
 import { AdminTeamsPage } from '@/pages/admin/AdminTeamsPage';
 import { AdminLiveDrawPage } from '@/pages/admin/AdminLiveDrawPage';
+import { AdminPlotDraftPage } from '@/pages/admin/AdminPlotDraftPage';
 import { AdminMatchesPage } from '@/pages/admin/AdminMatchesPage';
 import {
   AdminAnnouncementsPage,
@@ -89,6 +90,7 @@ export function App() {
                 <Route path="members" element={<AdminMembersPage leadershipOnly={false} />} />
                 <Route path="teams" element={<AdminTeamsPage />} />
                 <Route path="live-draw" element={<AdminLiveDrawPage />} />
+                <Route path="plot-draft" element={<AdminPlotDraftPage />} />
                 <Route path="fixtures" element={<AdminMatchesPage mode="fixtures" />} />
                 <Route path="results" element={<AdminMatchesPage mode="results" />} />
                 <Route path="standings" element={<AdminMatchesPage mode="standings" />} />

@@ -45,6 +45,7 @@ const ADMIN_NAV: AdminNavItem[] = [
   { to: '/admin/members', label: 'Players & Members', icon: Users, permission: 'manage_members' },
   { to: '/admin/teams', label: 'Teams', icon: Shield, permission: 'manage_teams_draw' },
   { to: '/admin/live-draw', label: 'Live Draw', icon: Shuffle, permission: 'manage_teams_draw' },
+  { to: '/admin/plot-draft', label: 'Plot & Wheel Draft', icon: Shuffle, permission: 'manage_teams_draw' },
   { to: '/admin/fixtures', label: 'Fixtures', icon: Calendar, permission: 'manage_matches' },
   { to: '/admin/results', label: 'Match Results', icon: BarChart3, permission: 'manage_matches' },
   { to: '/admin/standings', label: 'Standings', icon: Trophy, permission: 'manage_matches' },
