@@ -114,9 +114,9 @@ WHERE season_number = 7;
 UPDATE seasons SET
   name = 'Lords Cup Season 8 — French Ligue 1',
   competition_category = 'French Ligue 1 Edition',
-  description = 'Season 8 is coming! French Ligue 1 edition at East Court Arena — 10th November, 11:30 PM to whole night. Individual registration and live player draw.',
+  description = 'Season 8 is coming! French Ligue 1 edition at East Court Arena — 10th December, 11:30 PM to whole night. Individual registration and live player draw.',
   venue = 'East Court Arena',
-  tournament_start_date = '2026-11-10',
+  tournament_start_date = '2026-12-10',
   poster_url = '/assets/lords-cup-s8-logo.jpg',
   registration_status = 'open',
   verification_status = 'published',

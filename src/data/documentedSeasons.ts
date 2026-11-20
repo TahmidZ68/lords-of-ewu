@@ -111,7 +111,7 @@ export const HISTORICAL_SEASON_EXTRAS: Record<number, HistoricalSeasonExtra> = {
     ],
   },
   8: {
-    displayDate: '10th November · 11:30 PM – Whole Night',
+    displayDate: '10th December · 11:30 PM – Whole Night',
     participatingTeams: [],
   },
 };
@@ -409,7 +409,7 @@ export const DOCUMENTED_SEASONS_FALLBACK: Season[] = [
     slug: 'season-8',
     year: 2026,
     description:
-      'Season 8 is coming! French Ligue 1 edition at East Court Arena — 10th November, 11:30 PM to whole night. Individual registration and live player draw.',
+      'Season 8 is coming! French Ligue 1 edition at East Court Arena — 10th December, 11:30 PM to whole night. Individual registration and live player draw.',
     competition_category: 'French Ligue 1 Edition',
     documented_team_count: null,
     registration_type: 'Individual Registration + Live Draw',
@@ -418,14 +418,14 @@ export const DOCUMENTED_SEASONS_FALLBACK: Season[] = [
     champion_team: null,
     runner_up_team: null,
     historical_highlights:
-      'French Ligue 1 Edition · 10th November, 11:30 PM to whole night · East Court Arena · Individual registration (BDT 360/player) & live player draw.',
+      'French Ligue 1 Edition · 10th December, 11:30 PM to whole night · East Court Arena · Individual registration (BDT 360/player) & live player draw.',
     prizes_summary: 'Trophy, medals, and other rewards',
     poster_url: '/assets/lords-cup-s8-logo.jpg',
     verification_status: 'published',
     publication_status: 'published',
     registration_open_at: null,
     registration_close_at: null,
-    tournament_start_date: '2026-11-10',
+    tournament_start_date: '2026-12-10',
     tournament_end_date: null,
     venue: 'East Court Arena',
     registration_fee: 360,

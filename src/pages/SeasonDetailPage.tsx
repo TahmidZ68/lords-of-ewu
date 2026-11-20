@@ -294,7 +294,7 @@ export function SeasonDetailPage({ seasonNumberProp }: { seasonNumberProp?: numb
                     </p>
                     <p className="flex items-center gap-1 font-semibold">
                       <Calendar className="h-3.5 w-3.5 text-forest" />
-                      10th November · 11:30 PM – Whole Night
+                      10th December · 11:30 PM – Whole Night
                     </p>
                   </div>
                   {season.prizes_summary && (

@@ -217,7 +217,7 @@ export function HomePage() {
                 <div className="space-y-1.5 text-sm text-cream/85">
                   <p className="flex items-center gap-2">
                     <Calendar className="h-4 w-4 text-gold" />
-                    10th November · 11:30 PM – Whole Night
+                    10th December · 11:30 PM – Whole Night
                   </p>
                   <p className="flex items-center gap-2">
                     <MapPin className="h-4 w-4 text-gold" />
