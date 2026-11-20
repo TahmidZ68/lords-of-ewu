@@ -1,7 +1,7 @@
 import type { Season } from '@/types/database';
 
 export const SEASON_8_REGISTRATION_URL =
-  'https://script.google.com/macros/s/AKfycbw2GNQcM57y4OJUjP_NRBfr6D-nveUQv358ZEnI5j1jCyNL87kpUc1yjNMmQ9_g9NO0/exec';
+  'https://script.google.com/macros/s/AKfycbzvqHYS8FXRB7y9glS3RiXjv5gQ3zOkVj4Q7ZMt3Wk-gpQ0CXiVFXa50gOtjCaNoaiu/exec';
 
 export interface HistoricalSeasonExtra {
   displayDate: string;
